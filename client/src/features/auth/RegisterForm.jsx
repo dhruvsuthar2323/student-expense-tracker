@@ -160,8 +160,8 @@ export default function RegisterForm({ onSubmit, error, clearError }) {
 
     try {
       await onSubmit(
-        formData.fullName,
-        formData.email,
+        formData.fullName.trim(),
+        formData.email.trim(),
         formData.password,
         formData.confirmPassword
       );

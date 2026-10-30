@@ -38,7 +38,7 @@ export default function LoginForm({ onSubmit, error, clearError }) {
 
     setIsSubmitting(true);
     try {
-      await onSubmit(formData.email, formData.password);
+      await onSubmit(formData.email.trim(), formData.password);
     } catch {
       // Error is handled by the parent via the error prop
     } finally {

@@ -29,7 +29,8 @@ const register = async (req, res, next) => {
     }
 
     // Check if user already exists
-    const existingUser = await User.findOne({ email: email.toLowerCase().trim() });
+    const normalizedEmail = email.toLowerCase().trim();
+    const existingUser = await User.findOne({ email: normalizedEmail });
 
     if (existingUser) {
       return res.status(409).json({
@@ -41,7 +42,7 @@ const register = async (req, res, next) => {
     // Create user (password is hashed by the pre-save hook)
     const user = await User.create({
       fullName: fullName.trim(),
-      email: email.toLowerCase().trim(),
+      email: normalizedEmail,
       password,
     });
 
@@ -92,7 +93,8 @@ const login = async (req, res, next) => {
     }
 
     // Find user and explicitly include password for comparison
-    const user = await User.findOne({ email: email.toLowerCase().trim() }).select(
+    const normalizedEmail = email.toLowerCase().trim();
+    const user = await User.findOne({ email: normalizedEmail }).select(
       '+password'
     );
 
