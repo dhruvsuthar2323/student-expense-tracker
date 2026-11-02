@@ -24,4 +24,4 @@ export const EXPENSE_CATEGORIES = [
 
 export const CURRENCY = '₹';
 
-export const APP_NAME = 'SpendWise';
+export const APP_NAME = '[CASHCAMPUS]';
